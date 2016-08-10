@@ -1,0 +1,6 @@
+c:\users\yashkh\documents\visual studio 2015\Projects\BookStoreApp\BookStoreApp\bin\Debug\BookStoreApp.exe.config
+c:\users\yashkh\documents\visual studio 2015\Projects\BookStoreApp\BookStoreApp\bin\Debug\BookStoreApp.exe
+c:\users\yashkh\documents\visual studio 2015\Projects\BookStoreApp\BookStoreApp\bin\Debug\BookStoreApp.pdb
+c:\users\yashkh\documents\visual studio 2015\Projects\BookStoreApp\BookStoreApp\obj\Debug\BookStoreApp.csprojResolveAssemblyReference.cache
+c:\users\yashkh\documents\visual studio 2015\Projects\BookStoreApp\BookStoreApp\obj\Debug\BookStoreApp.exe
+c:\users\yashkh\documents\visual studio 2015\Projects\BookStoreApp\BookStoreApp\obj\Debug\BookStoreApp.pdb
