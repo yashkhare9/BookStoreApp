@@ -44,7 +44,7 @@ namespace BookStoreApp
 
                     case 2:
                         Console.WriteLine();
-                        bookstore.DisplayBook();
+                        bookstore.DisplayAllBooks();
                         Console.Write("\n\tEnter c = Contitune or e = Exit.\n\tEnter the choice:");
                         subChoice = Convert.ToChar(Console.ReadLine());
                         if (subChoice == 'c' || subChoice == 'C')

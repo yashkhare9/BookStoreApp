@@ -12,7 +12,6 @@ namespace BookStoreApp
     class BookStore
     {
         XmlSerializer serializer = new XmlSerializer(typeof(List<Book>));
-        public static int BookIDCount = 0, AuthorIDCount = 0, CategoryIDCount = 0, PublisherIDCount = 0;
         public static List<Book> storedBooks = new List<Book>();
         public static List<Author> authorList = new List<Author>();
         public static List<Category> categoryList = new List<Category>();
@@ -33,7 +32,7 @@ namespace BookStoreApp
             for (int j = 1; j <= 5; j++)
             {
                 Book b = new Book();
-                b.BookID = ++BookIDCount;
+                b.BookID = storedBooks.Count + 1;
                 b.objAuthor.AuthorName = "A" + j + 1;
                 b.objCategory.CategoryName = "C" + j + 1;
                 b.objPublisher.PublisherName = "P" + j + 1;
@@ -49,7 +48,7 @@ namespace BookStoreApp
             for (int j = 1; j <= 5; j++)
             {
                 Author a = new Author();
-                a.AuthorID = ++AuthorIDCount;
+                a.AuthorID = authorList.Count + 1;
                 a.AuthorName = "A" + j + 1;
                 a.DOB = DateTime.Now.ToShortDateString();
                 a.State = "AS" + j + 1;
@@ -62,7 +61,7 @@ namespace BookStoreApp
             for (int j = 1; j <= 5; j++)
             {
                 Category c = new Category();
-                c.CategoryID = ++CategoryIDCount;
+                c.CategoryID = categoryList.Count + 1;
                 c.CategoryName = "C" + j + 1;
                 c.CategoryDescription = "CD" + j + 1;
                 categoryList.Add(c);
@@ -72,7 +71,7 @@ namespace BookStoreApp
             for (int j = 1; j <= 5; j++)
             {
                 Publisher p = new Publisher();
-                p.PublisherID = ++PublisherIDCount;
+                p.PublisherID = publisherList.Count + 1;
                 p.PublisherName = "P" + j + 1;
                 p.DOB = DateTime.Now.ToShortDateString();
                 p.State = "PS" + j + 1;
@@ -84,12 +83,6 @@ namespace BookStoreApp
         }
 
 
-
-
-        /// <summary>                                                                             <summaey> ///
-        /////////////////////      Adding A Book to the database           ////////////////////////////////////
-        /// </summary>                                                                            <summaey> ///
-
         public void AddBook()
         {
             Console.Clear();
@@ -97,8 +90,7 @@ namespace BookStoreApp
             Console.WriteLine("\n\t=================================================================");
             Console.WriteLine("\n\tEnter the details of the book:\n");
             Book b = new Book();
-            BookIDCount++;
-            b.BookID = BookIDCount;
+            b.BookID = storedBooks.Count + 1;
             Console.WriteLine("\tBookID: {0}", b.BookID);
             Console.Write("\tEnter Title: ");
             b.Title = Console.ReadLine();
@@ -172,7 +164,7 @@ namespace BookStoreApp
             {
                 if (p3.PublisherID == b.objPublisher.PublisherID)
                 {
-                    b.objPublisher.PublisherName = p3.PublisherName; 
+                    b.objPublisher.PublisherName = p3.PublisherName;
                     Console.WriteLine("\tPublisher Name: {0}", b.objPublisher.PublisherName);
                     publisherFlag = 0;
                     break;
@@ -193,17 +185,17 @@ namespace BookStoreApp
         /////////////////////      Display Books from database           ////////////////////////////////////
         /// </summary>                                                                          <summaey> ///
 
-        public void DisplayBook()
+        public void DisplayAllBooks()
         {
             Console.Clear();
             Console.WriteLine("\n\t=================================================================");
-            Console.WriteLine("\n\tThe Details of Books are: \n");
             if (storedBooks.Count == 0)
             {
                 Console.WriteLine("\n\t\"No books in database.\"");
             }
             else
             {
+                Console.WriteLine("\n\tThe Details of Books are: \n");
                 foreach (Book displaybook in storedBooks)
                 {
                     Console.WriteLine("\tBookID: {0}", displaybook.BookID);
@@ -218,7 +210,7 @@ namespace BookStoreApp
                     Console.WriteLine();
                 }
             }
-            Console.WriteLine("\n\t================================================================="); Console.WriteLine("\tThe details of the book are:\n");
+            Console.WriteLine("\n\t=================================================================");
         }
 
 
@@ -248,7 +240,7 @@ namespace BookStoreApp
                     Console.WriteLine();
                 }
             }
-            if (storedBooks.Count == 0 || BID > BookIDCount)
+            if (storedBooks.Count == 0 || BID > storedBooks.Count)
             {
                 Console.WriteLine("\n\t\"BookID doesn't exist or deleted.\"");
             }
@@ -371,7 +363,7 @@ namespace BookStoreApp
 
                 }
             }
-            if (BookIDCount <= 0 || BID > BookIDCount || storedBooks.Count == 0)
+            if (BID > storedBooks.Count || storedBooks.Count == 0)
             {
                 Console.WriteLine("\n\t\"BookID doesn't exist or deleted.\"");
             }
@@ -407,7 +399,7 @@ namespace BookStoreApp
                     break;
                 }
             }
-            if (BookIDCount <= 0 || BID > BookIDCount || storedBooks.Count == 0)
+            if (BID > storedBooks.Count || storedBooks.Count == 0)
             {
                 Console.WriteLine("\n\t\"BookID doesn't exist or deleted.\"");
             }
@@ -481,7 +473,7 @@ namespace BookStoreApp
             Author a1 = new Author();
             Console.Clear();
             Console.WriteLine("\tEnter The New Authr Details:");
-            a1.AuthorID = ++CategoryIDCount;
+            a1.AuthorID = authorList.Count + 1;
             Console.WriteLine("\tAuthor ID: {0}", a1.AuthorID);
             Console.Write("\tAuthor Name: ");
             a1.AuthorName = Console.ReadLine();
@@ -516,7 +508,7 @@ namespace BookStoreApp
             Category c1 = new Category();
             Console.Clear();
             Console.WriteLine("\tEnter The New Category Details:");
-            c1.CategoryID = ++CategoryIDCount;
+            c1.CategoryID = categoryList.Count + 1;
             Console.WriteLine("\tCategory ID: {0}", c1.CategoryID);
             Console.Write("\tCategory Name: ");
             c1.CategoryName = Console.ReadLine();
@@ -534,7 +526,7 @@ namespace BookStoreApp
             Publisher p1 = new Publisher();
             Console.Clear();
             Console.WriteLine("\tEnter The New Publisher Details: ");
-            p1.PublisherID = ++PublisherIDCount;
+            p1.PublisherID = publisherList.Count + 1;
             Console.WriteLine("\tPublisher ID: {0}", p1.PublisherID);
             Console.Write("\tPublisher Name: ");
             p1.PublisherName = Console.ReadLine();
@@ -566,14 +558,18 @@ namespace BookStoreApp
         public void DisplayACP()
         {
             int cho;
-            x:
+        x:
             Console.WriteLine("\tChoose a option:\n\t1. Author's List\n\t2. Publisher's List\n\t3. Category List\n\t4. Exit");
             Console.Write("\tEnter Choice: ");
             cho = Convert.ToInt32(Console.ReadLine());
             switch (cho)
             {
                 case 1:
-                        Console.Clear();
+                    Console.Clear();
+                    if (authorList.Count == 0)
+                        Console.WriteLine("\n\tAuthor List is Empty.");
+                    else
+                    {
                         foreach (Author a2 in authorList)
                         {
                             Console.WriteLine("\tAuthorID: {0}", a2.AuthorID);
@@ -584,10 +580,15 @@ namespace BookStoreApp
                             Console.WriteLine("\tPhone: {0}", a2.Phone);
                             Console.WriteLine();
                         }
+                    }
                     break;
 
                 case 2:
-                        Console.Clear();
+                    Console.Clear();
+                    if (publisherList.Count == 0)
+                        Console.WriteLine("\n\tPublisher List is Empty.");
+                    else
+                    {
                         foreach (Publisher p2 in publisherList)
                         {
                             Console.WriteLine("\tPublisherID: {0}", p2.PublisherID);
@@ -597,19 +598,25 @@ namespace BookStoreApp
                             Console.WriteLine("\tCity: {0}", p2.City);
                             Console.WriteLine("\tPhone: {0}", p2.Phone);
                             Console.WriteLine();
+                        }
                     }
-                        break;
+                    break;
 
                 case 3:
-                        Console.Clear();
+                    Console.Clear();
+                    if (categoryList.Count == 0)
+                        Console.WriteLine("\n\tCategory List is Empty.");
+                    else
+                    {
                         foreach (Category c2 in categoryList)
                         {
                             Console.WriteLine("\tCategoryID: {0}", c2.CategoryID);
                             Console.WriteLine("\tCategory Name: {0}", c2.CategoryName);
                             Console.WriteLine("\tCategory Description: {0}", c2.CategoryDescription);
                             Console.WriteLine();
+                        }
                     }
-                        break;
+                    break;
 
                 case 4:
                     break;
@@ -621,4 +628,5 @@ namespace BookStoreApp
         }
     }
 }
+
 
