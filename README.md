@@ -1,2 +1,2 @@
 # BookStoreApp
-Book store App a console application in C#.
+A console application in C#.
